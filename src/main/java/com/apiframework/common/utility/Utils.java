@@ -1,5 +1,7 @@
 package com.apiframework.common.utility;
 
+import com.apiframework.common.logging.FrameWorkLogger;
+
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -48,7 +50,9 @@ public class Utils {
 
     public static Map<String, String> getServerConfigMap() {
         try {
-            String path = System.getProperty("user.dir" + "/resources/ProjectConfig.properties");
+
+            String path = System.getProperty("user.dir") + "/resources/ProjectConfig.properties";
+            FrameWorkLogger.logStep("PATH  IS "+path );
             File config = new File(path);
             FileInputStream input;
             input = new FileInputStream(config.getAbsolutePath());
@@ -71,13 +75,14 @@ public class Utils {
     /**
      * Method to get propertie map
      *
-     * @param Server ExecutionServr
+     * @param Server ExecutionServer
      * @return property map
      */
 
     public static Map<String, String> getPropertyMap(String Server) {
         try {
             String path = System.getProperty("user.dir") + "/resources/ServerURL/" + Server + "/config.properties";
+            FrameWorkLogger.logStep("complete path is "+path);
             File config = new File(path);
             FileInputStream input;
             input = new FileInputStream(config.getAbsolutePath());
@@ -93,6 +98,12 @@ public class Utils {
             e.printStackTrace();
         }
         return null;
+
+    }
+
+    protected static void getBaseURI()
+    {
+
 
     }
 
